@@ -4,24 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" />
-    <title>Les petits plats</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Menu déroulant</title>
 </head>
 
 <body>
     <header>
         <img class="image_header" src="assets/image_header_50.png" alt="image header">
         <img class="image_title_header" src="assets/image_title_header.png" alt="image header">
-        <p class="text_header">CHERCHEZ PARMI PLUS DE 1500 RECETTES
-            DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</p>
+        <p class="text_header">CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</p>
         <div class="search_header">
             <div class="input_header">
                 <input class="input_search" placeholder="Rechercher une recette, un ingrédient, ...">
-                <img class="logo_header" src="assets/logo_header.png">
-            </input>
+                <img class="logo_header" src="assets/logo_header.png" alt="logo">
             </div>
         </div>
     </header>
+
+    <!-- Ajoute une l'icone à place de list_bar, figma export l'image -->
+    <main class="main">
+        <button class="search_ingredients">Ingrédients</button>
+        <div id="row_bar" class="list_bar">
+        </div>
+        
+        <button class="search_bar">Appareils</button>
+        <div id="row_bar" class="list_bar">
+        </div>
+        
+        <button class="search_bar">Ustensiles</button>
+        <div id="row_bar" class="list_bar">
+        </div>
+    </main>
+    <script src="index.js" type="module"></script> 
 </body>
 
 </html>

@@ -8,39 +8,30 @@
     background-size: cover;
     background-position: center;
     position: relative;
-    /* z-index: 1; */
 }
 
-.image_title_header{
+.image_title_header {
     position: absolute;
     top: 50px;
     color: white;
     left: 80px;
 }
 
-.text_header{
+.text_header {
     font-family: Anton;
     font-size: 44px;
     font-weight: 400;
     line-height: 66px;
     position: absolute;
-    /* letter-spacing: 0em;
-    text-align: center; */
-    color:#FFD15B;
+    color: #FFD15B;
     top: 200px;
     text-align: center;
 }
-
-/* à refaire en français pour l'organigrame
-voire le cours sur les positions: absolute, relative, fixed, sticky 
-à faire le loupe, et le nav bar...
-couper div le texte centrale */
 
 .search_header {
     position: absolute;
     top: 400px;
     width: 70%;
-    /* display: flex; */
     justify-content: center;
     left: 15%;
 }
@@ -69,3 +60,39 @@ couper div le texte centrale */
     border-radius: 10px;
 }
 
+.row_bar {
+    position: relative;
+    display: inline-block;
+}
+
+.search_bar {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.list_bar {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.list_bar a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.list_bar a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
