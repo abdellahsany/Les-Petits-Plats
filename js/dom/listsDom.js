@@ -1,31 +1,29 @@
 import recipes from "../../data/recipes.js";
-import { deleteDuplicate, lowercaseList, listDom, sortLists } from "../helpers/lists.js"
+import { deleteDuplicate, lowercaseLists, listDom, sortLists } from "../helpers/lists.js"
 
 export function getIngredients() {
   const arrayIngredients = [];
   recipes.forEach((element) => {
     const ingredients = element.ingredients;
     ingredients.forEach((ingredient) => {
-      arrayIngredients.push(ingredient.ingredient);
+      arrayIngredients.push(ingredient.ingredient.toLowerCase())
     });
   });
   return arrayIngredients;
 }
 
-
 export function displayIngredients() {
   const ingredients = getIngredients();
-
   const sortIngredients = sortLists(ingredients);
-  const uniqueIngredients = deleteDuplicate(sortIngredients);
+  const uniqueIngredient = deleteDuplicate(sortIngredients);
 
-  listDom(".main", ".search_ingredients", "listIngredients", uniqueIngredients);
+  listDom(".container_ingredients", ".search_input_1", "ingredients_list", uniqueIngredient, "list");
 }
 
 export function getAppliance() {
   const arrayAppliance = []; // On créer un tableau vide sans donées, puis on va push les donnés à l'intérieure de ce tableau
   recipes.forEach((element) => {
-    arrayAppliance.push(element.appliance);
+    arrayAppliance.push(element.appliance.toLowerCase())
   })
   return arrayAppliance
 }
@@ -35,14 +33,14 @@ export function displayAppliance() {
   const sortAppliance = sortLists(appliance);
   const uniqueAppliance = deleteDuplicate(sortAppliance);
 
-  listDom("main", ".search_appliance", "listAppliance", uniqueAppliance)
+  listDom(".container_appliance", ".search_input_2", "appliances_list", uniqueAppliance, "list");
 }
 
 export function getUstensils() {
   const arrayUstensils = [];
   recipes.forEach((element) => {
    element.ustensils.forEach((ustensil) => {
-    arrayUstensils.push(ustensil);
+    arrayUstensils.push(ustensil.toLowerCase());
    })
   })
  return arrayUstensils
@@ -51,7 +49,8 @@ export function getUstensils() {
 export function displayUstensils() {
   const ustensils = getUstensils();
   const sortUstensils = sortLists(ustensils);
-  const lowerUstensils =  lowercaseList(sortUstensils);
-  const uniqueUstensils = deleteDuplicate(lowerUstensils);
-  listDom("main", ".search_ustensils", "listUstensils", uniqueUstensils)
+  const lowerUstensils =  lowercaseLists(sortUstensils);
+  const uniqueUstensil = deleteDuplicate(lowerUstensils);
+  listDom(".container_ustensils", ".search_input_3", "ustensils_list", uniqueUstensil, "list");
 }
+

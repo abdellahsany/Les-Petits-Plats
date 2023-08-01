@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="js/style/style.css" />
     <title>Menu déroulant</title>
   </head>
@@ -19,10 +20,11 @@
         src="assets/image_title_header.png"
         alt="image header"
       />
-      <p class="text_header">
-        CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET
-        DÉLICIEUSES
-      </p>
+      <div class="title_header">
+        <p class="text_header">
+          CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES
+        </p>
+      </div>
       <div class="search_header">
         <div class="input_header">
           <input
@@ -34,17 +36,37 @@
       </div>
     </header>
 
-    <!-- Ajoute une l'icone à place de list_bar, figma export l'image -->
-    <main class="main">
-      <button class="search_ingredients">Ingrédients</button>
-      <div id="row_bar" class="list_bar"></div>
-
-      <button class="search_appliance">Appareils</button>
-      <div id="row_bar" class="list_bar"></div>
-
-      <button class="search_ustensils">Ustensiles</button>
-      <div id="row_bar" class="list_bar"></div>
-    </main>
+  
+      <!-- Votre contenu principal ici -->
+      <main class="main">
+        <section class="container_lists">
+          <div class="container_ingredients"> <!-- Ajout de la classe "result_item" ici -->
+            <div class="container_button_ingredients">
+              <button class="search_ingredients">Ingrédients
+              <img class="search_angle_1" src="assets/vector_1.png" alt="angle" /></button>
+            </div>
+            <!-- <input class="search_input_1" /> -->
+          </div>
+    
+          <div class="container_appliance"> <!-- Ajout de la classe "result_item" ici -->
+            <div class="container_button_appliances">
+              <button class="search_appliances">Appareils
+              <img class="search_angle_2" src="assets/vector_1.png" alt="angle" /></button>
+            </div>
+            <!-- <input class="search_input_2" /> -->
+          </div>
+        
+          <div class="container_ustensils"> <!-- Ajout de la classe "result_item" ici -->
+            <div class="container_button_ustensils">
+              <button class="search_ustensils">Ustensiles
+              <img class="search_angle_3" src="assets/vector_1.png" alt="angle" /></button>
+            </div>
+            <!-- <input class="search_input_3" /> -->
+          </div>
+        </section>
+        <!-- <div class="recipes_lists"></div> -->
+      </main>
     <script src="js/index.js" type="module"></script>
+    <script src="js/dom/listsDom.js" type="module"></script>
   </body>
 </html>
