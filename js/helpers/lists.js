@@ -1,65 +1,77 @@
 import recipes from "../../data/recipes.js";
 
-function getSearchesInputs() {
-  const searchInput1 = document.querySelector(".search_input_1");
-  const searchInput2 = document.querySelector(".search_input_2");
-  const searchInput3 = document.querySelector(".search_input_3");
-
+function getIngredientsInput() {
+  const searchInput1 = document.querySelector(".search_ingredients");
   const ingredientsList = document.querySelector(".ingredients_list");
-  const appliancesList = document.querySelector(".appliances_list");
-  const ustensilsList = document.querySelector(".ustensils_list");
-
   const search1 = searchInput1.value.toLowerCase();
-  console.log(searchInput2, "----", searchInput2.value);
-  const search2 = searchInput2.value.toLowerCase();
-  const search3 = searchInput3.value.toLowerCase();
 
   ingredientsList.innerHTML = "";
-  appliancesList.innerHTML = "";
-  ustensilsList.innerHTML = "";
 
   recipes.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
-      const ingredientName = ingredient.ingredient.toLowerCase();
-      if (ingredientName.includes(search1)) {
-        const ingredientsLi = document.createElement("li");
-        ingredientsLi.textContent = ingredientName;
-        ingredientsList.appendChild(ingredientsLi);
-      }
-    });
-  });
-
-  recipes.forEach((recipe) => {
-    const applianceName = recipe.appliance.toLowerCase();
-    if (applianceName.includes(search2)) {
-      const appliancesLi = document.createElement("li");
-      appliancesLi.textContent = applianceName;
-      appliancesList.appendChild(appliancesLi);
+    const ingredientsName = ingredient.ingredient.toLowerCase();
+    if (ingredientsName.includes(search1)) {
+      const ingredientsLi = document.createElement("li");
+      ingredientsLi.textContent = ingredientsName;
+      ingredientsName.appendChild(ingredientsLi);
     }
   });
+});
+}
+function getAppliancesInput() {
+  const searchInput2 = document.querySelector(".search_appliances");
+  const appliancesList = document.querySelector(".appliances_list");
+  const search2 = searchInput2.value.toLowerCase();
+
+  appliancesList.innerHTML = "";
 
   recipes.forEach((recipe) => {
-    recipe.ustensils.forEach((ustensil) => {
-      const ustensilName = ustensil.toLowerCase();
-      if (ustensilName.includes(search3)) {
-        const ustensilsLi = document.createElement("li");
-        ustensilsLi.textContent = ustensilName;
-        ustensilsList.appendChild(ustensilsLi);
-      }
-    });
+    const appliancesName = recipe.appliance.toLowerCase();
+    if (appliancesName.includes(search2)) {
+      const appliancesLi = document.createElement("li");
+      appliancesLi.textContent = appliancesName;
+      appliancesName.appendChild(appliancesLi);
+    }
   });
 }
 
+function getUstensilsInput() {
+  const searchInput3 = document.querySelector(".search_ustensils");
+  const ustensilsList = document.querySelector(".ustensils_list");
+  const search3 = searchInput3.value.toLowerCase();
 
-export function listDom(containerButton, buttonValue, containerClass, array, classList) {
+  ustensilsList.innerHTML = "";
+
+  recipes.forEach((recipe) => {
+      const ustensilsName = recipe.ustensils.toLowerCase();
+      if (ustensilsName.includes(search3)) {
+        const ustensilsLi = document.createElement("li");
+        ustensilsLi.textContent = ustensilsName;
+        ustensilsName.appendChild(ustensilsLi);
+      }
+    });
+}
+
+export function listDom(
+  containerButton,
+  buttonValue,
+  containerClass,
+  array,
+  classList
+) {
   const main = document.querySelector(containerButton);
   const button = document.querySelector(buttonValue);
+  const wrapper = document.createElement("div");
   const containerUl = document.createElement("ul");
   containerUl.classList.add(containerClass);
+  
 
-  button.addEventListener("click", () => {
-    const inputLi1 = '<input class="search_input_1" />';
-    containerUl.innerHTML = inputLi1;
+  button.addEventListener("click", (e) => {
+    const selectedList = button.id;
+    const inputLi1 = document.createElement("input");
+    console.log(wrapper);
+    wrapper.appendChild(inputLi1);
+    wrapper.appendChild(containerUl);
 
     array.forEach((element) => {
       const list = document.createElement("li");
@@ -69,19 +81,18 @@ export function listDom(containerButton, buttonValue, containerClass, array, cla
       containerUl.appendChild(list);
     });
 
-    const searchInputSelectors = [".search_input_1", ".search_input_2", ".search_input_3"];
-
+    const mapper = {
+      ingredients_btn: getIngredientsInput,
+      appliance_btn: getAppliancesInput,
+      ustensils_btn: getUstensilsInput,
+    };
     // Loop through the array and add the event listener to each element
-    searchInputSelectors.forEach(selector => {
-      const elements = document.querySelectorAll(selector);
-      elements.forEach(element => {
-        element.addEventListener("input", getSearchesInputs);
-      });
-    });
-    });
-  main.appendChild(containerUl);
+    const input = document.querySelector("input");
+    console.log(input);
+    input.addEventListener("input", mapper[selectedList]); // mapper.ingredients_btn
+  });
+  main.appendChild(wrapper);
 }
-
 
 // Function to sort elements of an array in ascending order
 export function sortLists(array) {

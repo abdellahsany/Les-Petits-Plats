@@ -17,7 +17,7 @@ export function displayIngredients() {
   const sortIngredients = sortLists(ingredients);
   const uniqueIngredient = deleteDuplicate(sortIngredients);
 
-  listDom(".container_ingredients", ".search_input_1", "ingredients_list", uniqueIngredient, "list");
+  listDom(".container_ingredients", ".search_angle_1", "ingredients_list", uniqueIngredient, "list");
 }
 
 export function getAppliance() {
@@ -33,7 +33,7 @@ export function displayAppliance() {
   const sortAppliance = sortLists(appliance);
   const uniqueAppliance = deleteDuplicate(sortAppliance);
 
-  listDom(".container_appliance", ".search_input_2", "appliances_list", uniqueAppliance, "list");
+  listDom(".container_appliance", ".search_angle_2", "appliances_list", uniqueAppliance, "list");
 }
 
 export function getUstensils() {
@@ -51,6 +51,6 @@ export function displayUstensils() {
   const sortUstensils = sortLists(ustensils);
   const lowerUstensils =  lowercaseLists(sortUstensils);
   const uniqueUstensil = deleteDuplicate(lowerUstensils);
-  listDom(".container_ustensils", ".search_input_3", "ustensils_list", uniqueUstensil, "list");
+  listDom(".container_ustensils", ".search_angle_3", "ustensils_list", uniqueUstensil, "list");
 }
 
