@@ -1,7 +1,9 @@
+// IMPORT RECIPES
 import recipes from "../../data/recipes.js";
 
+// GET INGREDIENTS INPUT
 function getIngredientsInput() {
-  const searchInput1 = document.querySelector(".search_ingredients");
+  const searchInput1 = document.querySelector("#search_ingredients");
   const ingredientsList = document.querySelector(".ingredients_list");
   const search1 = searchInput1.value.toLowerCase();
 
@@ -9,17 +11,19 @@ function getIngredientsInput() {
 
   recipes.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
-    const ingredientsName = ingredient.ingredient.toLowerCase();
-    if (ingredientsName.includes(search1)) {
-      const ingredientsLi = document.createElement("li");
-      ingredientsLi.textContent = ingredientsName;
-      ingredientsName.appendChild(ingredientsLi);
-    }
+      const ingredientsName = ingredient.ingredient.toLowerCase();
+      if (ingredientsName.includes(search1)) {
+        const ingredientsLi = document.createElement("li");
+        ingredientsLi.textContent = ingredientsName;
+        ingredientsList.appendChild(ingredientsLi);
+      }
+    });
   });
-});
 }
+
+// GET APPLIANCES INPUT
 function getAppliancesInput() {
-  const searchInput2 = document.querySelector(".search_appliances");
+  const searchInput2 = document.querySelector("#search_appliances");
   const appliancesList = document.querySelector(".appliances_list");
   const search2 = searchInput2.value.toLowerCase();
 
@@ -30,28 +34,41 @@ function getAppliancesInput() {
     if (appliancesName.includes(search2)) {
       const appliancesLi = document.createElement("li");
       appliancesLi.textContent = appliancesName;
-      appliancesName.appendChild(appliancesLi);
+      appliancesList.appendChild(appliancesLi);
     }
   });
 }
 
+// GET UTENSILS INPUT
 function getUstensilsInput() {
-  const searchInput3 = document.querySelector(".search_ustensils");
+  const searchUstensilsInput = document.querySelector("#search_ustensils");
+  console.log(searchUstensilsInput, "searchUstensilsInput");
   const ustensilsList = document.querySelector(".ustensils_list");
-  const search3 = searchInput3.value.toLowerCase();
+  console.log(ustensilsList, "ustensilsList");
+  const searchUstensilsValue = searchUstensilsInput.value.toLowerCase();
+console.log(searchUstensilsValue, "searchUstensilsValue");
 
   ustensilsList.innerHTML = "";
 
   recipes.forEach((recipe) => {
-      const ustensilsName = recipe.ustensils.toLowerCase();
-      if (ustensilsName.includes(search3)) {
-        const ustensilsLi = document.createElement("li");
-        ustensilsLi.textContent = ustensilsName;
-        ustensilsName.appendChild(ustensilsLi);
-      }
+    console.log(recipe.ustensils, "recipe.ustensils");
+    recipe.ustensils.forEach((element)=>{
+    if (element.includes(searchUstensilsValue)) {
+    const ustensilsLi = document.createElement("li");
+    ustensilsLi.textContent = searchUstensilsValue;
+    ustensilsList.appendChild(ustensilsLi);
+    }
     });
+    // if (ustensilsName.includes(searchUstensilsValue)) {
+    //   // const ustensilsLi = document.createElement("li");
+    //   // ustensilsLi.textContent = ustensilsName;
+    //   // ustensilsList.appendChild(ustensilsLi);
+    // }
+  });
 }
+getUstensilsInput();
 
+// LIST DOM
 export function listDom(
   containerButton,
   buttonValue,
@@ -64,49 +81,60 @@ export function listDom(
   const wrapper = document.createElement("div");
   const containerUl = document.createElement("ul");
   containerUl.classList.add(containerClass);
-  
+
+  let isInputCreated = false;
+  let isListCreated = false;
+  let inputLi1;
 
   button.addEventListener("click", (e) => {
     const selectedList = button.id;
-    const inputLi1 = document.createElement("input");
-    console.log(wrapper);
-    wrapper.appendChild(inputLi1);
-    wrapper.appendChild(containerUl);
 
-    array.forEach((element) => {
-      const list = document.createElement("li");
-      list.classList.add(classList);
-      list.textContent = element;
-      list.classList.add("capitalize");
-      containerUl.appendChild(list);
-    });
+    if (!isInputCreated) {
+      inputLi1 = document.createElement("input");
+      inputLi1.setAttribute("type", "search");
+      wrapper.appendChild(inputLi1);
+      isInputCreated = true;
+    }
 
-    const mapper = {
-      ingredients_btn: getIngredientsInput,
-      appliance_btn: getAppliancesInput,
-      ustensils_btn: getUstensilsInput,
-    };
-    // Loop through the array and add the event listener to each element
-    const input = document.querySelector("input");
-    console.log(input);
-    input.addEventListener("input", mapper[selectedList]); // mapper.ingredients_btn
+    if (!isListCreated) {
+      array.forEach((element) => {
+        const list = document.createElement("li");
+        list.classList.add(classList);
+        list.textContent = element;
+        list.classList.add("capitalize");
+        containerUl.appendChild(list);
+      });
+
+      isListCreated = true;
+
+      wrapper.appendChild(containerUl);
+    }
+
+    // const mapper = {
+    //   getIngredientsInput,
+    //   getAppliancesInput,
+    //   getUstensilsInput,
+    // };
+    // const input = document.querySelector("input");
+    // input.addEventListener("input", mapper[selectedList]);
   });
+
   main.appendChild(wrapper);
 }
 
-// Function to sort elements of an array in ascending order
+// SORT LISTS
 export function sortLists(array) {
   const arraySort = array.slice().sort();
   return arraySort;
 }
 
-// Function to remove duplicate elements from an array
+// DELETE DUPLICATE
 export function deleteDuplicate(array) {
   const arrayUnique = Array.from(new Set(array));
   return arrayUnique;
 }
 
-// Function to convert all elements of an array to lowercase strings
+// LOWERCASE LISTS
 export function lowercaseLists(array) {
   const lowercaseArray = array.map((word) => word.toLowerCase());
   return lowercaseArray;

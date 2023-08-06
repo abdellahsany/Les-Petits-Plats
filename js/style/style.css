@@ -93,9 +93,9 @@
 }
 
 /* Styles pour les boutons de recherche (ingrédients, appareils, ustensiles) */
-.search_ingredients,
-.search_appliance,
-.search_ustensils {
+#search_ingredients,
+#search_appliance,
+#search_ustensils {
     border-radius: 10px;
     background-color: #FFFFFF;
     height: 30px;
